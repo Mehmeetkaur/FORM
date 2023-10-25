@@ -1,0 +1,39 @@
+<h3>Welcome to the Home Page of Application</h3>
+
+<p>Log Health Details</p>
+
+
+
+<form (ngSubmit)="onSubmit()"> 
+    <label for="bloodPressureHigh">Blood Pressure High:</label>
+    <input type="number" name="bloodPressureHigh" [(ngModel)]="bloodPressureHigh"> 
+    <br>
+
+    <label for="bloodPressureLow">Blood Pressure Low:</label>
+    <input type="number" name="bloodPressureLow" [(ngModel)]="bloodPressureLow">
+    <br>
+
+    <label for="sugar">Sugar:</label>
+    <input type="number" name="sugar" [(ngModel)]="sugar">
+    <br>
+
+    <button type="submit">Save Health Parameters</button>
+</form>
+
+<br>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>BP High</th>
+        <th>BP Low</th>
+        <th>Sugar</th>
+    </tr>
+    <tr *ngFor="let Log of healthLogs$ | async">
+        <td>{{Log.createdOn * 1000 | date : 'dd/MM | hh:mm'}}</td>
+        <td>{{Log.bloodPressureHigh}}</td>
+        <td>{{Log.bloodPressureLow}}</td>
+        <td>{{Log.sugar}}</td>
+
+
+    </tr>
+</table>
